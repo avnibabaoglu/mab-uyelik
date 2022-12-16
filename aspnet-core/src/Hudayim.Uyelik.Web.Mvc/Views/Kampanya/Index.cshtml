@@ -1,0 +1,69 @@
+﻿@using Hudayim.Uyelik.Web.Startup
+@using Hudayim.Uyelik.Web.Models.Kampanyas
+@model KampanyaViewModel
+@{ ViewBag.Title = L("Campaigns");
+	ViewBag.CurrentPageName = PageNames.KampanyaGoruntule; }
+@section scripts
+{
+	<environment names="Development">
+		<script src="~/view-resources/Views/Kampanya/Index.js" asp-append-version="true"></script>
+	</environment>
+
+	<environment names="Staging,Production">
+		<script src="~/view-resources/Views/Kampanya/Index.min.js" asp-append-version="true"></script>
+	</environment>
+}
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="portfolio-menu mt-2 mb-4">
+							<ul>
+								<li class="btn btn-outline-dark active" data-filter="*">TÜMÜ</li>
+								@foreach (var kategori in Model.LFirmaKategoriler)
+								{
+									<li class="btn btn-outline-dark" data-filter=".kategori-@kategori.Value">@kategori.Name</li>
+								}
+							</ul>
+						</div>
+						<div class="portfolio-item row">
+							@foreach (var kampanya in Model.Kampanyalar)
+							{
+								<div class="item kategori-@kampanya.FirmaKategoriId col-lg-3 col-md-4 col-6 col-sm">
+									<div class="card border-secondary">
+										<div class="card-header">
+											<h4>@kampanya.FirmaAdi</h4>
+										</div>
+										@if (!string.IsNullOrEmpty(kampanya.ResimTamYolu))
+										{
+											<a href="@kampanya.ResimTamYolu" class="fancylight popup-btn" data-fancybox-group="light">
+												<img class="img-fluid card-img-top" src="@kampanya.ResimTamYolu" alt="">
+											</a>
+										}
+										else
+										{
+											<div class="text-center"><i class="fas fa-bullhorn fa-9x"></i></div>
+										}
+										<div class="card-body">
+											<h5 class="card-title"><b>@kampanya.Ad</b></h5>
+											<p class="card-text">@kampanya.Aciklama</p>
+											<p class="card-text"><b>İndirim Oranı:</b> <i class="fas fa-percentage"></i>&nbsp; @kampanya.IndirimOrani</p>
+											<p class="card-text"><b>Mail:</b>  @kampanya.FirmaMailAdresi</p>
+											<p class="card-text"><b>Telefon:</b>@kampanya.FirmaTelefon</p>
+										</div>
+										<div class="card-footer">
+											@kampanya.BaslangicTarihi.ToShortDateString() - @kampanya.BitisTarihi.ToShortDateString()
+										</div>
+									</div>
+								</div>
+							}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

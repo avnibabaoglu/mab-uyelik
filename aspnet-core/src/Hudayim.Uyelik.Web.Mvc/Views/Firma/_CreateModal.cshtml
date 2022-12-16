@@ -1,0 +1,94 @@
+﻿@using Hudayim.Uyelik.Web.Models.Common.Modals
+@using Hudayim.Uyelik.Web.Models.Firmas
+@model FirmaViewModel
+@{ Layout = null; }
+<div class="modal fade" id="FirmaCreateModal" tabindex="-1" role="dialog" aria-labelledby="FirmaCreateModalLabel" data-backdrop="static">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateNewCompany")))
+			<form name="FirmaCreateForm" method="post" enctype="multipart/form-data" role="form" class="form-horizontal">
+				<div class="modal-body">
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label" for="surname">@L("Category")</label>
+						<div class="col-md-9">
+							<select id="kategoriId"
+									name="KategoriId"
+									asp-items="@Model.LKategoriler"
+									class="form-control select2" required>
+								<option value="">Seçiniz</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="surname">@L("City")</label>
+						<div class="col-md-9">
+							<select id="ilId"
+									name="IlId"
+									asp-items="@Model.LIller"
+									class="form-control">
+								<option value="">Seçiniz</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("Name")</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="ad" name="Ad" required minlength="2">
+						</div>
+					</div>
+					<div class="form-group row ">
+						<label class="col-md-3 col-form-label">@L("WebAddress")</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="webAdresi" name="WebAdresi" minlength="2">
+						</div>
+					</div>
+					<div class="form-group row ">
+						<label class="col-md-3 col-form-label">@L("Mail")</label>
+						<div class="col-md-9">
+							<input type="email" class="form-control" id="mail" name="Mail" minlength="2">
+						</div>
+					</div>
+					<div class="form-group row ">
+						<label class="col-md-3 col-form-label">@L("PhoneNumber")</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="telefon" name="Telefon" minlength="2">
+						</div>
+					</div>
+					<div class="form-group row ">
+						<label class="col-md-3 col-form-label">@L("Address")</label>
+						<div class="col-md-9">
+							<textarea type="text" class="form-control" id="adres" name="Adres" rows="3"></textarea>
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("OrderNo")</label>
+						<div class="col-md-9">
+							<input id="siraNo" type="number" class="form-control" name="SiraNo">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="CreateKategoriIsActive">@L("IsActive")</label>
+						<div class="col-md-9">
+							<input type="checkbox" name="AktifMi" value="true" id="CreateFirmaIsActive" checked />
+						</div>
+					</div>
+					<div class="form-group row ">
+						<label class="col-md-3 col-form-label">@L("Description")</label>
+						<div class="col-md-9">
+							<textarea type="text" class="form-control" id="aciklama" name="Aciklama" rows="3"></textarea>
+						</div>
+					</div>
+					<div class="form-group row ">
+						<label class="col-md-3 col-form-label">@L("Image")</label>
+						<input type="hidden" id="fotografAdi" name="FotografAdi" />
+						<input type="hidden" id="fotografYolu" name="FotografYolu" />
+						<div class="col-md-9">
+							<input type="file" class="form-control" id="fileUpload">
+						</div>
+					</div>
+				</div>
+				@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+			</form>
+		</div>
+	</div>
+</div>

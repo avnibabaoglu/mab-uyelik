@@ -1,0 +1,106 @@
+﻿@using Hudayim.Uyelik.Web.Models.Common.Modals
+@using Hudayim.Uyelik.Web.Models.Firmas
+@model EditFirmaModalViewModel
+@{ Layout = null; }
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditCompany")))
+<form name="FirmaEditForm" role="form" class="form-horizontal">
+	<input type="hidden" name="Id" value="@Model.FirmaDto.Id" />
+	<input type="hidden" id="resimAdi" name="ResimAdi" asp-for="FirmaDto.ResimAdi" />
+	<input type="hidden" id="resimYolu" name="ResimYolu" asp-for="FirmaDto.ResimYolu" />
+
+	<div class="modal-body">
+		<div class="form-group row required">
+			<label class="col-md-3 col-form-label" for="surname">@L("Category")</label>
+			<div class="col-md-9">
+				<select id="kategoriId"
+						name="KategoriId"
+						asp-for="@Model.FirmaDto.KategoriId"
+						asp-items="@Model.LKategoriler"
+						class="form-control select2" required>
+					<option value="">Seçiniz</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-md-3 col-form-label" for="surname">@L("Company")</label>
+			<div class="col-md-9">
+				<select id="ilId"
+						name="IlId"
+						asp-for="@Model.FirmaDto.IlId"
+						asp-items="@Model.LIller"
+						class="form-control">
+					<option value="">Seçiniz</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row required">
+			<label class="col-md-3 col-form-label">@L("Name")</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="ad" name="Ad" value="@Model.FirmaDto.Ad" required minlength="2">
+			</div>
+		</div>
+		<div class="form-group row ">
+			<label class="col-md-3 col-form-label">@L("WebAddress")</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="webAdresi" name="WebAdresi" value="@Model.FirmaDto.WebAdresi" minlength="2">
+			</div>
+		</div>
+		<div class="form-group row ">
+			<label class="col-md-3 col-form-label">@L("Mail")</label>
+			<div class="col-md-9">
+				<input type="email" class="form-control" id="mail" name="Mail" value="@Model.FirmaDto.Mail" minlength="2">
+			</div>
+		</div>
+		<div class="form-group row ">
+			<label class="col-md-3 col-form-label">@L("PhoneNumber")</label>
+			<div class="col-md-9">
+				<input type="text" class="form-control" id="telefon" name="Telefon" value="@Model.FirmaDto.Telefon" minlength="2">
+			</div>
+		</div>
+		<div class="form-group row ">
+			<label class="col-md-3 col-form-label">@L("Address")</label>
+			<div class="col-md-9">
+				<textarea type="text" class="form-control" id="adres" name="Adres" asp-for="@Model.FirmaDto.Adres" rows="3"></textarea>
+			</div>
+		</div>
+		<div class="form-group row required">
+			<label class="col-md-3 col-form-label">@L("OrderNo")</label>
+			<div class="col-md-9">
+				<input id="siraNo" type="number" class="form-control" name="SiraNo" value="@Model.FirmaDto.SiraNo">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-md-3 col-form-label" for="IsActive">@L("IsActive")</label>
+			<div class="col-md-9">
+				<input id="aktifMi" type="checkbox" name="AktifMi" value="true" @(Model.FirmaDto.AktifMi ? "checked" : "") />
+			</div>
+		</div>
+		<div class="form-group row ">
+			<label class="col-md-3 col-form-label">@L("Description")</label>
+			<div class="col-md-9">
+				<textarea type="text" class="form-control" id="aciklama" name="Aciklama" rows="3" asp-for="@Model.FirmaDto.Aciklama"></textarea>
+			</div>
+		</div>
+		@if (!string.IsNullOrWhiteSpace(Model.FirmaDto.ResimTamYolu))
+		{
+			<div class="form-group row">
+				<div class="col-3"> </div>
+				<div class="col-9">
+					<img src="@Model.FirmaDto.ResimTamYolu" class="img-responsive img-bordered" style="width:25%;" />
+					<button type="button" class="btn btn-sm bg-danger delete-firma-photo" data-firma-id="@Model.FirmaDto.Id">
+						@L("Delete") <i class="fas fa-trash"></i>
+					</button>
+				</div>
+			</div>
+		}
+		<div class="form-group row">
+			<label class="col-md-3 col-form-label">@L("Image")</label>
+			<div class="col-md-9">
+				<input type="file" class="form-control" id="fileUpload">
+			</div>
+		</div>
+	</div>
+	@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/Firma/_EditModal.js" asp-append-version="true"></script>

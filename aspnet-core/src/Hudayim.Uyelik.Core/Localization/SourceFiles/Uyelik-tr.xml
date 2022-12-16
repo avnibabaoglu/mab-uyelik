@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localizationDictionary culture="tr">
+	<texts>
+		<text name="HomePage" value="Ana Sayfa" />
+		<text name="About" value="Hakkında" />
+		<text name="WelcomeMessage" value="Hüdayim Üyelik projesine hoşgeldiniz!" />
+		<text name="FormIsNotValidMessage" value="Form geçerli değil. Lütfen kontrol edip hataları düzeltin." />
+		<text name="TenantNameCanNotBeEmpty" value="Müşteri adı boş bırakılamaz." />
+		<text name="InvalidUserNameOrPassword" value="Kullanıcı adı ya da şifre hatalı." />
+		<text name="ThereIsNoTenantDefinedWithName{0}" value="{0} isminde bir müşteri tanımlı değildir." />
+		<text name="TenantIsNotActive" value="{0} isimli müşteri aktif edilmemiştir." />
+		<text name="UserIsNotActiveAndCanNotLogin" value="{0} isimli kullanıcı pasife alınmıştır ve sisteme giremez." />
+		<text name="UserEmailIsNotConfirmedAndCanNotLogin">E-posta adresiniz doğrulanmadı, giriş yapamazsınız.</text>
+		<text name="UserLockedOutMessage">Kullanıcı hesabı kilitlenmiş. Lütfen bir süre sonra tekrar deneyin.</text>
+		<text name="PleaseEnterLoginInformation" value="Lütfen giriş bilgilerinizi girin" />
+		<text name="TenancyName" value="Müşteri adı" />
+		<text name="UserNameOrEmail" value="Kullanıcı adı ya da e-posta" />
+		<text name="Password" value="Şifre" />
+		<text name="ResetPassword" value="Şifreyi yenile" />
+		<text name="UpdatePassword" value="Şifreyi güncelle" />
+		<text name="UpdateUser" value="Bilgileri Güncelle" />
+		<text name="RememberMe" value="Beni hatırla" />
+		<text name="LogIn" value="Giriş" />
+		<text name="LoginFailed" value="Giriş başarısız!" />
+		<text name="NameSurname" value="Ad soyad" />
+		<text name="UserName" value="Kullanıcı adı" />
+		<text name="Name" value="İsim" />
+		<text name="Surname" value="Soy isim" />
+		<text name="EmailAddress" value="E-posta adresi" />
+		<text name="Tenants" value="Müşteriler" />
+		<text name="TenantManager" value="Müşteri Yönetimi" />
+		<text name="SavedSuccessfully" value="Başarıyla kaydedildi" />
+		<text name="CreateNewTenant" value="Yeni müşteri oluştur" />
+		<text name="AdminEmailAddress" value="Yönetici e-posta adresi" />
+		<text name="Save" value="Kaydet" />
+		<text name="Cancel" value="İptal" />
+		<text name="TenantName_Regex_Description" value="Müşteri adı en az 2 karakter olmalı, bir harfle başlamalı ve harf, rakam, tire ya da alt çizgi ile devam etmelidir." />
+		<text name="DefaultPasswordIs" value="Varsayılan şifre {0}" />
+		<text name="CanBeEmptyToLoginAsHost" value="Host olarak giriş yapmak için boş bırakılabilir." />
+		<text name="Register" value="Kayıt ol" />
+		<text name="OrLoginWith" value="Ya da şununla giriş yap" />
+		<text name="WaitingForActivationMessage" value="Hesabınız sistem yöneticisi tarafından etkinleştirilmek için bekliyor." />
+		<text name="TenantSelection" value="Müşteri seçimi" />
+		<text name="TenantSelection_Detail" value="Lütfen aşağıdaki müşterilerden birisini seçin." />
+		<text name="Logout" value="Çıkış" />
+		<text name="RegisterFormUserNameInvalidMessage">Lütfen kullanıcı adı alanına e-posta adresi girmeyin.</text>
+		<text name="DatabaseConnectionString" value="Veritabanı bağlantı cümlesi" />
+		<text name="Users" value="Kullanıcılar" />
+		<text name="UserManager" value="Kullanıcı Yönetimi" />
+		<text name="IsActive" value="Etkin mi" />
+		<text name="FullName" value="Tam adı" />
+		<text name="CreateNewUser" value="Yeni kullanıcı oluştur" />
+		<text name="Yes" value="Evet" />
+		<text name="No" value="Hayır" />
+		<text name="Optional" value="Opsiyonel" />
+		<text name="LeaveEmptyToSwitchToHost">Üst kullanıcıya geçiş için boş değer girin.</text>
+		<text name="CurrentTenant">Geçerli müşteri</text>
+		<text name="NotSelected">Seçilmemiş</text>
+		<text name="Change">Değiştir</text>
+		<text name="ChangeTenant">Müşteri değiştir</text>
+		<text name="MultiLevelMenu">Çok Seviyeli Menü</text>
+		<text name="Back">Geri</text>
+		<text name="SuccessfullyRegistered">Başarıyla kayıt olundu</text>
+		<text name="WaitingForEmailActivation">E-posta adresiniz etkinleştirilmeli.</text>
+		<text name="Roles">Roller</text>
+		<text name="RoleManager">Rol Yönetimi</text>
+		<text name="DisplayName">Görünen ad</text>
+		<text name="Edit">Düzenle</text>
+		<text name="Delete">Sil</text>
+		<text name="CreateNewRole">Yeni rol oluştur</text>
+		<text name="RoleName">Rol adı</text>
+		<text name="Actions">İşlemler</text>
+		<text name="CouldNotCompleteLoginOperation">Giriş işlemi başarısız! Lütfen daha sonra tekrar deneyiniz.</text>
+		<text name="CouldNotValidateExternalUser">Harici kullanıcı doğrulanamadı!</text>
+		<text name="EditRole">Rolü düzenle</text>
+		<text name="EditTenant">Müşteri düzenle</text>
+		<text name="EditUser">Kullanıcı düzenleme</text>
+		<text name="TenantIdIsNotActive{0}">Müşteri id aktif değil: {0}</text>
+		<text name="UnknownTenantId{0}">Müşteri id aktif değil: {0}</text>
+		<text name="ThisFieldIsRequired">Bu alan zorunludur.</text>
+		<text name="PleaseWait">Lütfen bekleyin...</text>
+		<text name="Administration">Yönetim</text>
+		<text name="ClearAll">Hepsini temizle</text>
+		<text name="ClearOthers">Diğerlerini temizle</text>
+		<text name="LabelOptions">Etikent seçenekleri</text>
+		<text name="Permissions">Yetkiler</text>
+		<text name="RoleDescription">Rol tanımı</text>
+		<text name="Refresh">Yenile</text>
+		<text name="Create">Oluştur</text>
+		<text name="UserDetails">Kullanıcı detayları</text>
+		<text name="UserRoles">Kullanıcı rolleri</text>
+		<text name="UserDeleteWarningMessage">{0} kullanıcısı silinecektir.</text>
+		<text name="RoleDeleteWarningMessage">{0} rolü silinecek ve atanmış kullanıcılardan kaldırılacaktır.</text>
+		<text name="TenantDeleteWarningMessage">{0} müşterisi silinecektir.</text>
+		<text name="SearchWithThreeDot">Ara...</text>
+		<text name="PleaseEnterAtLeastNCharacter">Lütfen en az {0} karakter giriniz</text>
+		<text name="PleaseEnterNoMoreThanNCharacter">Lütfen en fazla {0} karakter giriniz</text>
+		<text name="InvalidEmailAddress">Geçersiz e-posta adresi</text>
+		<text name="InvalidPattern">Geçersiz</text>
+		<text name="PairsDoNotMatch">Eşleşmiyor</text>
+		<text name="All">Hepsi</text>
+		<text name="TotalRecordsCount">Toplam: {0}</text>
+		<text name="Search">Bul</text>
+		<text name="Clear">Temizle</text>
+		<text name="CurrentPassword">Mevcut şifreniz</text>
+		<text name="NewPassword">Yeni şifre</text>
+		<text name="ConfirmNewPassword">Yeni şifreyi doğrula</text>
+
+		<text name="CategoryManager">Kategori Yönetimi</text>
+		<text name="Categories">Kategoriler</text>
+		<text name="Category">Kategori</text>
+		<text name="CreateNewCategory">Yeni Kategori Oluştur</text>
+		<text name="EditCategory">Kategori Düzenle</text>
+		<text name="DetailCategory">Kategori Detayı</text>
+
+		<text name="UnitManager">Birim Yönetimi</text>
+		<text name="Units">Birimler</text>
+		<text name="Unit">Birim</text>
+		<text name="CreateNewUnit">Yeni Birim Oluştur</text>
+		<text name="EditUnit">Birim Düzenle</text>
+		<text name="DetailUnit">Birim Detayı</text>
+
+		<text name="PeriodManager">Dönem Yönetimi</text>
+		<text name="Periods">Dönemler</text>
+		<text name="Period">Dönem</text>
+		<text name="CreateNewPeriod">Yeni Dönem Oluştur</text>
+		<text name="EditPeriod">Dönem Düzenle</text>
+		<text name="DetailPeriod">Dönem Detayı</text>
+
+		<text name="ProfessionManager">Meslek Yönetimi</text>
+		<text name="Professions">Meslekler</text>
+		<text name="Profession">Meslek</text>
+		<text name="CreateNewProfession">Yeni Meslek Oluştur</text>
+		<text name="EditProfession">Meslek Düzenle</text>
+		<text name="DetailProfession">Meslek Detayı</text>
+
+		<text name="AddressManager">Adres Yönetimi</text>
+		<text name="Addresses">Adresler</text>
+		<text name="Address">Adres</text>
+		<text name="CreateNewAddress">Yeni Adres Oluştur</text>
+		<text name="EditAddress">Adres Düzenle</text>
+		<text name="DetailAddress">Adres Detayı</text>
+
+		<text name="CountryManager">Ülke Yönetimi</text>
+		<text name="Countries">Ülkeler</text>
+		<text name="Country">Ülke</text>
+		<text name="CreateNewCountry">Yeni Ülke Oluştur</text>
+		<text name="EditCountry">Ülke Düzenle</text>
+		<text name="DetailCountry">Ülke Detayı</text>
+
+		<text name="CityManager">İl Yönetimi</text>
+		<text name="Cities">İller</text>
+		<text name="City">İl</text>
+		<text name="CreateNewCity">Yeni İl Oluştur</text>
+		<text name="EditCity">İl Düzenle</text>
+		<text name="DetailCity">İl Detayı</text>
+
+		<text name="CountyManager">İlçe Yönetimi</text>
+		<text name="Counties">İlçeler</text>
+		<text name="County">İlçe</text>
+		<text name="CreateNewCounty">Yeni İlçe Oluştur</text>
+		<text name="EditCounty">İlçe Düzenle</text>
+		<text name="DetailCounty">İlçe Detayı</text>
+
+		<text name="DistrictManager">Mahalle Yönetimi</text>
+		<text name="Districts">Mahalleler</text>
+		<text name="District">Mahalle</text>
+		<text name="CreateNewDistrict">Yeni Mahalle Oluştur</text>
+		<text name="EditDistrict">Mahalle Düzenle</text>
+		<text name="DetailDistrict">Mahalle Detayı</text>
+
+		<text name="EducationManager">Eğitim Yönetimi</text>
+		<text name="Educations">Eğitimler</text>
+		<text name="Education">Eğitim</text>
+		<text name="CreateNewEducation">Yeni Eğitim Oluştur</text>
+		<text name="EditEducation">Eğitim Düzenle</text>
+		<text name="DetailEducation">Eğitim Detayı</text>
+
+		<text name="UniversityManager">Üniversite Yönetimi</text>
+		<text name="Universities">Üniversiteler</text>
+		<text name="University">Üniversite</text>
+		<text name="CreateNewUniversity">Yeni Üniversite Oluştur</text>
+		<text name="EditUniversity">Üniversite Düzenle</text>
+		<text name="DetailUniversity">Üniversite Detayı</text>
+
+		<text name="FaculityManager">Fakülte Yönetimi</text>
+		<text name="Faculities">Fakülteler</text>
+		<text name="Faculity">Fakülte</text>
+		<text name="CreateNewFaculity">Yeni Fakülte Oluştur</text>
+		<text name="EditFaculity">Fakülte Düzenle</text>
+		<text name="DetailFaculity">Fakülte Detayı</text>
+
+		<text name="DepartmentManager">Bölüm Yönetimi</text>
+		<text name="Departments">Bölümler</text>
+		<text name="Department">Bölüm</text>
+		<text name="CreateNewDepartment">Yeni Bölüm Oluştur</text>
+		<text name="EditDepartment">Bölüm Düzenle</text>
+		<text name="DetailDepartment">Bölüm Detayı</text>
+
+		<text name="IncomeManager">Gelir Yönetimi</text>
+		<text name="Incomes">Gelirler</text>
+		<text name="Income">Gelir</text>
+		<text name="CreateNewIncome">Yeni Gelir Oluştur</text>
+		<text name="EditIncome">Gelir Düzenle</text>
+		<text name="DetailIncome">Gelir Detayı</text>
+
+		<text name="CompanyManager">Firma Yönetimi</text>
+		<text name="Companies">Firmalar</text>
+		<text name="Company">Firma</text>
+		<text name="CreateNewCompany">Yeni Firma Oluştur</text>
+		<text name="EditCompany">Firma Düzenle</text>
+		<text name="DetailsCompany">Firma Detayı</text>
+
+		<text name="CampaignManager">Kampanya Yönetimi</text>
+		<text name="Campaigns">Kampanyalar </text>
+		<text name="Campaign">Kampanya </text>
+		<text name="CreateNewCampaign">Yeni Kampanya Oluştur</text>
+		<text name="CreateCampaign">Yeni Kampanya</text>
+		<text name="EditCampaign">Kampanya Düzenle</text>
+		<text name="DetailCampaign">Kampanya Detayı</text>
+
+		<text name="Member">Üye</text>
+	</texts>
+</localizationDictionary>

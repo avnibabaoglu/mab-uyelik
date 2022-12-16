@@ -1,0 +1,45 @@
+﻿@using Hudayim.Uyelik.Web.Models.Common.Modals
+@using Hudayim.Uyelik.Web.Models.Kategories
+@model KategoriViewModel
+@{ Layout = null; }
+<div class="modal fade" id="KategoriCreateModal" tabindex="-1" role="dialog" aria-labelledby="KategoriCreateModalLabel" data-backdrop="static">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateNewCategory")))
+			<form name="KategoriCreateForm" role="form" class="form-horizontal">
+				<div class="modal-body">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="surname">@L("CategoryType")</label>
+						<div class="col-md-9">
+							<select id="kategoriTuru"
+									name="KategoriTuru"
+									asp-items="@Model.LKategorTurleri"
+									class="form-control select2">
+								<option value="">Seçiniz</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("Name")</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="ad" name="Ad" required minlength="2">
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("OrderNo")</label>
+						<div class="col-md-9">
+							<input id="siraNo" type="number" class="form-control" name="SiraNo">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="CreateKategoriIsActive">@L("IsActive")</label>
+						<div class="col-md-9">
+							<input type="checkbox" name="AktifMi" value="true" id="CreateKategoriIsActive" checked />
+						</div>
+					</div>
+				</div>
+				@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+			</form>
+		</div>
+	</div>
+</div>

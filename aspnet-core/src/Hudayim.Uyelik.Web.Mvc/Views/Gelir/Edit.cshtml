@@ -1,0 +1,127 @@
+﻿@using Hudayim.Uyelik.Web.Startup
+@using Hudayim.Uyelik.Web.Models.Gelirs
+@model GelirViewModel
+@{
+	ViewBag.Title = L("EditIncome");
+	ViewBag.CurrentPageName = PageNames.Gelir;
+}
+
+@section scripts
+{
+	<environment names="Development">
+		<script src="~/view-resources/Views/Gelir/Edit.js" asp-append-version="true"></script>
+	</environment>
+
+	@*<environment names="Staging,Production">
+			<script src="~/view-resources/Views/Gelir/Index.min.js" asp-append-version="true"></script>
+		</environment>*@
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<h1>@L("EditIncome")</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-6">
+			<div class="card card-primary" id="GelirEditCard">
+				<form name="GelirEditForm" role="form" class="form-horizontal">
+					<div class="card-body">
+						<input type="hidden" name="Id" value="@Model.GelirDto.Id" />
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="surname">@L("Periods")</label>
+							<div class="col-md-9">
+								<select id="donemId"
+										name="DonemId"
+										asp-for="GelirDto.DonemId"
+										asp-items="@Model.LDonemler"
+										class="form-control select2">
+									<option value="">Seçiniz</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="surname">@L("IncomesType")</label>
+							<div class="col-md-9">
+								<select id="gelirTuruId"
+										name="GelirTuruId"
+										asp-for="GelirDto.GelirTuruId"
+										asp-items="@Model.LGelirTurleri"
+										class="form-control select2">
+									<option value="">Seçiniz</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="surname">@L("Users")</label>
+							<div class="col-md-9">
+								<select id="userId"
+										name="UserId"
+										asp-for="GelirDto.UserId"
+										class="form-control multi-select2">
+									@if (Model.GelirDto.UserId.HasValue)
+									{
+										<option selected="selected" value="@Model.GelirDto.UserId">@Model.GelirDto.UserName</option>
+									}
+									else
+									{
+										<option value="">Seçiniz</option>
+									}
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("Name")</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" id="ad" name="Ad" asp-for="GelirDto.Ad" minlength="2">
+							</div>
+						</div>
+						<div class="form-group row required">
+							<label class="col-md-3 col-form-label">@L("Amount")</label>
+							<div class="col-md-9">
+								<input id="tutar" type="number" class="form-control" name="Tutar" asp-for="GelirDto.Tutar" required="required">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("Note")</label>
+							<div class="col-md-9">
+								<input id="not" type="text" class="form-control" name="Not" asp-for="GelirDto.Not">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("PaymentDate")</label>
+							<div class="col-md-9">
+								<input id="odemeTarihi" class="form-control" type="date" name="OdemeTarihi" asp-for="GelirDto.OdemeTarihi" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("LastPaymentDate")</label>
+							<div class="col-md-9">
+								<input id="sonOdemeTarihi" class="form-control" type="date" name="SonOdemeTarihi" asp-for="GelirDto.SonOdemeTarihi" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("OrderNo")</label>
+							<div class="col-md-9">
+								<input id="siraNo" type="number" class="form-control" name="SiraNo" asp-for="GelirDto.SiraNo">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("IsActive")</label>
+							<div class="col-md-9">
+								<input id="aktifMi" type="checkbox" name="AktifMi" value="true" @(Model.GelirDto.AktifMi ? "checked" : "") />
+							</div>
+						</div>
+					</div>
+					@await Html.PartialAsync("~/Views/Shared/Forms/_FormFooterWithSaveAndCancel.cshtml")
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,123 @@
+﻿@using Hudayim.Uyelik.Web.Startup
+@using Hudayim.Uyelik.Web.Models.Gelirs
+@model GelirViewModel
+@{
+	ViewBag.Title = L("CreateNewIncome");
+	ViewBag.CurrentPageName = PageNames.Gelir;
+}
+
+@section scripts
+{
+	<environment names="Development">
+		<script src="~/view-resources/Views/Gelir/Create.js" asp-append-version="true"></script>
+	</environment>
+
+	@*<environment names="Staging,Production">
+			<script src="~/view-resources/Views/Gelir/Index.min.js" asp-append-version="true"></script>
+		</environment>*@
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<h1>@L("CreateNewIncome")</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-6">
+			<div class="card card-primary" id="GelirCreateCard">
+				<form name="GelirCreateForm" role="form" class="form-horizontal">
+					<div class="card-body">
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="surname">@L("Periods")</label>
+							<div class="col-md-9">
+								<select id="donemId"
+										name="DonemId"
+										asp-items="@Model.LDonemler"
+										class="form-control select2">
+									<option value="">Seçiniz</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="surname">@L("IncomesType")</label>
+							<div class="col-md-9">
+								<select id="gelirTuruId"
+										name="GelirTuruId"
+										asp-items="@Model.LGelirTurleri"
+										class="form-control select2">
+									<option value="">Seçiniz</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="surname">@L("Users")</label>
+							<div class="col-md-9">
+								<select id="userId"
+										name="UserId"
+										class="form-control multi-select2">
+									@if (Model.UserDto != null)
+									{
+										<option selected="selected" value="@Model.UserDto.Id">@Model.UserDto.FullName</option>
+									}
+									else
+									{
+										<option value="">Seçiniz</option>
+									}
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("Name")</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" id="ad" name="Ad" required minlength="2">
+							</div>
+						</div>
+						<div class="form-group row required">
+							<label class="col-md-3 col-form-label">@L("Amount")</label>
+							<div class="col-md-9">
+								<input id="tutar" type="number" class="form-control" name="Tutar" required="required">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("Note")</label>
+							<div class="col-md-9">
+								<input id="not" type="text" class="form-control" name="Not" multiple>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("PaymentDate")</label>
+							<div class="col-md-9">
+								<input id="odemeTarihi" class="form-control" type="date" name="OdemeTarihi" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("LastPaymentDate")</label>
+							<div class="col-md-9">
+								<input id="sonOdemeTarihi" class="form-control" type="date" name="SonOdemeTarihi" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("OrderNo")</label>
+							<div class="col-md-9">
+								<input id="siraNo" type="number" class="form-control" name="SiraNo">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label">@L("IsActive")</label>
+							<div class="col-md-9">
+								<input id="aktifMi" type="checkbox" name="AktifMi" value="true" checked />
+							</div>
+						</div>
+					</div>
+					@await Html.PartialAsync("~/Views/Shared/Forms/_FormFooterWithSaveAndCancel.cshtml")
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

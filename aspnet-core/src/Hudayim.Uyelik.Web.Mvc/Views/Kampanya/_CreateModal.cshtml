@@ -1,0 +1,77 @@
+﻿@using Hudayim.Uyelik.Web.Models.Common.Modals
+@using Hudayim.Uyelik.Web.Models.Kampanyas
+@model KampanyaViewModel
+@{ Layout = null; }
+<div class="modal fade" id="KampanyaCreateModal" tabindex="-1" role="dialog" aria-labelledby="KampanyaCreateModalLabel" data-backdrop="static">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateNewCampaign")))
+			<form name="KampanyaCreateForm" method="post" enctype="multipart/form-data" role="form" class="form-horizontal">
+				<div class="modal-body">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="surname">@L("Companies")</label>
+						<div class="col-md-9">
+							<select id="firmaId"
+									name="FirmaId"
+									asp-items="@Model.LFirmalar"
+									class="form-control">
+								<option value="">Seçiniz</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("Name")</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="ad" name="Ad" required minlength="2">
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("StartDate")</label>
+						<div class="col-md-9">
+							<input id="baslangicTarihi" class="form-control" name="BaslangicTarihi" type="date" required />
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("EndDate")</label>
+						<div class="col-md-9">
+							<input id="bitisTarihi" class="form-control" name="BitisTarihi" type="date" required />
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("OrderNo")</label>
+						<div class="col-md-9">
+							<input id="siraNo" type="number" class="form-control" name="SiraNo">
+						</div>
+					</div>
+					<div class="form-group row ">
+						<label class="col-md-3 col-form-label">@L("SalesRatio")</label>
+						<div class="col-md-9">
+							<input type="number" class="form-control" id="indirimOrani" name="IndirimOrani">
+						</div>
+					</div>
+					<div class="form-group row ">
+						<label class="col-md-3 col-form-label">@L("Description")</label>
+						<div class="col-md-9">
+							<textarea type="text" class="form-control" id="aciklama" name="Aciklama" rows="3"></textarea>
+						</div>
+					</div>
+					<div class="form-group row ">
+						<label class="col-md-3 col-form-label">@L("Image")</label>
+						<input type="hidden" id="fotografAdi" name="FotografAdi" />
+						<input type="hidden" id="fotografYolu" name="FotografYolu" />
+						<div class="col-md-9">
+							<input type="file" class="form-control" id="fileUpload">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="CreateCampaignIsActive">@L("IsActive")</label>
+						<div class="col-md-9">
+							<input type="checkbox" name="AktifMi" value="true" id="CreateCampaignIsActive" checked />
+						</div>
+					</div>
+				</div>
+				@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+			</form>
+		</div>
+	</div>
+</div>

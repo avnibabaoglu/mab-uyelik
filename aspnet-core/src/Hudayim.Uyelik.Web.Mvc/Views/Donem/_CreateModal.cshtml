@@ -1,0 +1,57 @@
+﻿@using Hudayim.Uyelik.Web.Models.Common.Modals
+@using Hudayim.Uyelik.Web.Models.Donems
+@model DonemViewModel
+@{ Layout = null; }
+<div class="modal fade" id="DonemCreateModal" tabindex="-1" role="dialog" aria-labelledby="DonemCreateModalLabel" data-backdrop="static">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateNewPeriod")))
+			<form name="DonemCreateForm" role="form" class="form-horizontal">
+				<div class="modal-body">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="surname">@L("PeriodType")</label>
+						<div class="col-md-9">
+							<select id="donemTuru"
+									name="DonemTuru"
+									asp-items="@Model.LDonemTurleri"
+									class="form-control">
+								<option value="">Seçiniz</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("Name")</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="ad" name="Ad" required minlength="2">
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("OrderNo")</label>
+						<div class="col-md-9">
+							<input id="siraNo" type="number" class="form-control" name="SiraNo">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label">@L("StartDate")</label>
+						<div class="col-md-9">
+							<input id="baslangicTarihi" class="form-control" type="date" name="BaslangicTarihi" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label">@L("EndDate")</label>
+						<div class="col-md-9">
+							<input id="bitisTarihi" class="form-control" type="date" name="BitisTarihi" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="CreateKategoriIsActive">@L("IsActive")</label>
+						<div class="col-md-9">
+							<input type="checkbox" name="AktifMi" value="true" id="CreateKategoriIsActive" checked />
+						</div>
+					</div>
+				</div>
+				@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+			</form>
+		</div>
+	</div>
+</div>

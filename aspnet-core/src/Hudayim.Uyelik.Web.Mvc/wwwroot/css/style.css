@@ -1,0 +1,58 @@
+﻿/* prevent the drop down icon going onto a new line for the top bar language link */
+.top-bar-language-nav-link {
+	min-width: 65px;
+}
+
+/* bootstrap model showing two scroll bars */
+html {
+	overflow: visible;
+}
+
+/* main sidebar not under model */
+.modal {
+	z-index: 1110;
+}
+
+.form-group.required .col-form-label:after {
+	color: #d00;
+	content: "*";
+	position: absolute;
+	margin-left: 3px;
+}
+
+.nav-user-menu .user-image {
+	width: 20px;
+	margin-right: 4px;
+	margin-top: -4px;
+}
+
+.famfamfam-flags {
+	display: inline-block;
+}
+
+.portfolio-menu {
+	text-align: center;
+}
+
+	.portfolio-menu ul li {
+		display: inline-block;
+		margin: 0;
+		list-style: none;
+		padding: 10px 15px;
+		cursor: pointer;
+		-webkit-transition: all 05s ease;
+		-moz-transition: all 05s ease;
+		-ms-transition: all 05s ease;
+		-o-transition: all 05s ease;
+		transition: all .5s ease;
+	}
+
+.portfolio-item {
+	/*width:100%;*/
+}
+
+	.portfolio-item .item {
+		/*width:303px;*/
+		float: left;
+		margin-bottom: 10px;
+	}

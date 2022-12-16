@@ -1,0 +1,25 @@
+﻿@using Hudayim.Uyelik.Web.Models.Common.Modals
+@using Hudayim.Uyelik.Web.Models.Addresses
+@model EditAddressModalViewModel
+@{ Layout = null; }
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditCountry")))
+<form name="UlkeEditForm" role="form" class="form-horizontal">
+	<input type="hidden" name="Id" value="@Model.UlkeDto.Id" />
+	<div class="modal-body">
+		<div class="form-group row required">
+			<label class="col-md-3 col-form-label" for="name">@L("Name")</label>
+			<div class="col-md-9">
+				<input id="ad" type="text" class="form-control" name="Ad" value="@Model.UlkeDto.Ad" required minlength="2">
+			</div>
+		</div>
+		<div class="form-group row required">
+			<label class="col-md-3 col-form-label" for="name">@L("OrderNo")</label>
+			<div class="col-md-9">
+				<input id="siraNo" type="number" class="form-control" name="SiraNo" value="@Model.UlkeDto.SiraNo">
+			</div>
+		</div>
+	</div>
+	@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/Ulke/_EditModal.js" asp-append-version="true"></script>

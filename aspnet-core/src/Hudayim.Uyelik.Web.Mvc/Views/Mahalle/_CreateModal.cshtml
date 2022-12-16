@@ -1,0 +1,58 @@
+﻿@using Hudayim.Uyelik.Web.Models.Common.Modals
+@using Hudayim.Uyelik.Web.Models.Addresses
+@model AddressViewModel
+@{ Layout = null; }
+<div class="modal fade" id="MahalleCreateModal" tabindex="-1" role="dialog" aria-labelledby="MahalleCreateModalLabel" data-backdrop="static">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateNewDistrict")))
+			<form name="MahalleCreateForm" role="form" class="form-horizontal">
+				<div class="modal-body">
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="surname">@L("Country")</label>
+						<div class="col-md-9">
+							<select id="ulkeId"
+									asp-items="@Model.LUlkeler"
+									class="form-control">
+								<option value="">Seçiniz</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-3 col-form-label" for="surname">@L("City")</label>
+						<div class="col-md-9">
+							<select id="ilId"
+									name="IlId"
+									asp-items="@Model.LIller"
+									class="form-control">
+							</select>
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("County")</label>
+						<div class="col-md-9">
+							<select id="ilceId"
+									name="IlceId"
+									asp-items="@Model.LIlceler"
+									class="form-control">
+							</select>
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("Name")</label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="ad" name="Ad" required minlength="2">
+						</div>
+					</div>
+					<div class="form-group row required">
+						<label class="col-md-3 col-form-label">@L("OrderNo")</label>
+						<div class="col-md-9">
+							<input id="siraNo" type="number" class="form-control" name="SiraNo">
+						</div>
+					</div>
+				</div>
+				@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+			</form>
+		</div>
+	</div>
+</div>

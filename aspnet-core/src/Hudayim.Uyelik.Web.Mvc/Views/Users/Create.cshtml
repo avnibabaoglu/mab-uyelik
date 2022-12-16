@@ -1,0 +1,300 @@
+﻿@using Abp.Authorization.Users
+@using Hudayim.Uyelik.Common
+@using Hudayim.Uyelik.Web.Startup
+@using Hudayim.Uyelik.Web.Models.Users
+@model UserViewModel
+@{ ViewBag.Title = L("CreateNewUser");
+	ViewBag.CurrentPageName = PageNames.Users; }
+
+@section scripts
+{
+	<environment names="Development">
+		<script src="~/view-resources/Views/Users/Create.js" asp-append-version="true"></script>
+	</environment>
+
+	<environment names="Staging,Production">
+		<script src="~/view-resources/Views/Users/Create.min.js" asp-append-version="true"></script>
+	</environment>
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<h1>@L("CreateUser")</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-9">
+			<div class="card card-primary" id="UserCreateCard">
+				<form method="post" enctype="multipart/form-data" name="UserCreateForm" role="form" class="form-horizontal">
+					<div class="card-body">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" role="tab" href="#create-user-details">@L("UserDetails")</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" role="tab" href="#create-user-roles">@L("UserRoles")</a>
+							</li>
+						</ul>
+						<div class="tab-content mt-4">
+							<div role="tabpanel" class="tab-pane container active" id="create-user-details">
+								<div class="row">
+									<div class="col-6">
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("Country")</label>
+											<div class="col-md-9">
+												<select id="ulkeId"
+														name="UlkeId"
+														asp-items="Model.LUlkeler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("City")</label>
+											<div class="col-md-9">
+												<select id="ilId"
+														name="IlId"
+														asp-items="Model.LIller"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("County")</label>
+											<div class="col-md-9">
+												<select id="ilceId"
+														name="IlceId"
+														asp-items="Model.LIlceler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("District")</label>
+											<div class="col-md-9">
+												<select id="mahalleId"
+														name="MahalleId"
+														asp-items="Model.LMahalleler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Address")</label>
+											<div class="col-md-9">
+												<textarea id="adres" type="text" class="form-control" name="Adres" rows="2" maxlength="@MaxLengthValues.MaxAddressLength"></textarea>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Category")</label>
+											<div class="col-md-9">
+												<select id="kategoriId"
+														asp-items="Model.LKategoriler"
+														class="form-control select2" multiple="multiple">
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Unit")</label>
+											<div class="col-md-9">
+												<select id="birimId"
+														name="BirimId"
+														asp-items="Model.LBirimler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Period")</label>
+											<div class="col-md-9">
+												<select id="donemId"
+														name="DonemId"
+														asp-items="Model.LDonemler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("Univercity")</label>
+											<div class="col-md-9">
+												<select id="universiteId"
+														name="UniversiteId"
+														asp-items="Model.LUniversiteler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("Faculity")</label>
+											<div class="col-md-9">
+												<select id="fakulteId"
+														name="FakulteId"
+														asp-items="Model.LFakulteler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("Department")</label>
+											<div class="col-md-9">
+												<select id="bolumId"
+														name="BolumId"
+														asp-items="Model.LBolumler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("GraduationYear")</label>
+											<div class="col-md-9">
+												<input id="mezuniyetYili" type="number" class="form-control" name="MezuniyetYili">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Company")</label>
+											<div class="col-md-9">
+												<input id="calistigiKurum" type="text" class="form-control" name="CalistigiKurum" maxlength="@AbpUserBase.MaxUserNameLength">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Task")</label>
+											<div class="col-md-9">
+												<select id="meslek-multi-select2"
+														name="MeslekId"
+														asp-items="Model.LMeslekler"
+														class="form-control">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Position")</label>
+											<div class="col-md-9">
+												<input id="calistigiPozisyon" type="text" class="form-control" name="CalistigiPozisyon" maxlength="@AbpUserBase.MaxUserNameLength">
+											</div>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="form-group row required">
+											<label class="col-md-3 col-form-label" for="username">@L("UserName")</label>
+											<div class="col-md-9">
+												<input id="username" type="text" class="form-control" name="UserName" required maxlength="@AbpUserBase.MaxUserNameLength" minlength="2">
+											</div>
+										</div>
+										<div class="form-group row required">
+											<label class="col-md-3 col-form-label">@L("Password")</label>
+											<div class="col-md-9">
+												<input type="password" class="form-control" name="Password" id="Password" required maxlength="@AbpUserBase.MaxPlainPasswordLength">
+											</div>
+										</div>
+										<div class="form-group row required">
+											<label class="col-md-3 col-form-label">@L("ConfirmPassword")</label>
+											<div class="col-md-9">
+												<input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" required maxlength="@AbpUserBase.MaxPlainPasswordLength">
+											</div>
+										</div>
+										<div class="form-group row required">
+											<label class="col-md-3 col-form-label" for="name">@L("Name")</label>
+											<div class="col-md-9">
+												<input id="name" type="text" class="form-control" name="Name" required maxlength="@AbpUserBase.MaxNameLength">
+											</div>
+										</div>
+										<div class="form-group row required">
+											<label class="col-md-3 col-form-label">@L("Surname")</label>
+											<div class="col-md-9">
+												<input id="surname" type="text" class="form-control" name="Surname" required maxlength="@AbpUserBase.MaxSurnameLength">
+											</div>
+										</div>
+										<div class="form-group row required">
+											<label class="col-md-3 col-form-label" for="email">@L("EmailAddress")</label>
+											<div class="col-md-9">
+												<input id="email" type="email" class="form-control" name="EmailAddress" required maxlength="@AbpUserBase.MaxEmailAddressLength">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("PhoneNumber")</label>
+											<div class="col-md-9">
+												<input id="phoneNumber" type="tel" class="form-control" name="PhoneNumber">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("PhoneNumber2")</label>
+											<div class="col-md-9">
+												<input id="ikinciTelefon" type="tel" class="form-control" name="IkinciTelefon">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("StartDate")</label>
+											<div class="col-md-9">
+												<input id="uyelikBaslangicTarihi" class="form-control" type="date" name="UyelikBaslangicTarihi" />
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("EndDate")</label>
+											<div class="col-md-9">
+												<input id="uyelikBitisTarihi" class="form-control" type="date" name="UyelikBitisTarihi" />
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Note")</label>
+											<div class="col-md-9">
+												<textarea id="not" type="text" class="form-control" name="Not" rows="2" maxlength="@MaxLengthValues.MaxAddressLength"></textarea>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Image")</label>
+											<input type="hidden" id="profilFotografAdi" name="ProfilFotografAdi" />
+											<input type="hidden" id="profilFotografYolu" name="ProfilFotografYolu" />
+											<div class="col-md-9">
+												<input type="file" class="form-control" id="fileUpload">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label" for="IsActive">@L("IsActive")</label>
+											<div class="col-md-9">
+												<input id="isActive" type="checkbox" name="IsActive" value="true" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label" for="KvkkOnayliMi">@L("KvkkOnayliMi")</label>
+											<div class="col-md-9">
+												<input id="kvkkOnayliMi" type="checkbox" name="KvkkOnayliMi" value="false" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane container" id="create-user-roles">
+								<div class="row">
+									@foreach (var role in Model.Roles)
+									{
+										<div class="col-md-6">
+											<input type="checkbox" name="role" id="role-@role.Id" value="@role.NormalizedName" title="@role.Description" />
+											<label for="role-@role.Id" title="@role.DisplayName">@role.Name</label>
+										</div>
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+					@await Html.PartialAsync("~/Views/Shared/Forms/_FormFooterWithSaveAndCancel.cshtml")
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

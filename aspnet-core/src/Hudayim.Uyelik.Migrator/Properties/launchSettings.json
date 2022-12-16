@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Hudayim.Uyelik.Migrator": {
+      "commandName": "Project",
+      "commandLineArgs": "-uyelik -ulke"
+    }
+  }
+}

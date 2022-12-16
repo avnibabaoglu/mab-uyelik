@@ -1,0 +1,49 @@
+﻿@using Hudayim.Uyelik.Web.Models.Common.Modals
+@using Hudayim.Uyelik.Web.Models.Addresses
+@model EditAddressModalViewModel
+@{ Layout = null; }
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditCity")))
+<form name="IlceEditForm" role="form" class="form-horizontal">
+	<input type="hidden" name="Id" value="@Model.IlceDto.Id" />
+	<div class="modal-body">
+		<div class="form-group row">
+			<label class="col-md-3 col-form-label" for="surname">@L("Country")</label>
+			<div class="col-md-9">
+				<select id="ulkeId"
+						name="UlkeId"
+						asp-for="@Model.IlceDto.UlkeId"
+						asp-items="@Model.LUlkeler"
+						class="form-control">
+					<option value="">Seçiniz</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-md-3 col-form-label" for="surname">@L("City")</label>
+			<div class="col-md-9">
+				<select id="ilId"
+						name="IlId"
+						asp-for="@Model.IlceDto.IlId"
+						asp-items="@Model.LIller"
+						class="form-control">
+					<option value="">Seçiniz</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row required">
+			<label class="col-md-3 col-form-label" for="name">@L("Name")</label>
+			<div class="col-md-9">
+				<input id="ad" type="text" class="form-control" name="Ad" value="@Model.IlceDto.Ad" required minlength="2">
+			</div>
+		</div>
+		<div class="form-group row required">
+			<label class="col-md-3 col-form-label" for="name">@L("OrderNo")</label>
+			<div class="col-md-9">
+				<input id="siraNo" type="number" class="form-control" name="SiraNo" value="@Model.IlceDto.SiraNo">
+			</div>
+		</div>
+	</div>
+	@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/Ilce/_EditModal.js" asp-append-version="true"></script>

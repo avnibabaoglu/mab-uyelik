@@ -1,0 +1,55 @@
+﻿@using Hudayim.Uyelik.Web.Models.Common.Modals
+@using Hudayim.Uyelik.Web.Models.Donems
+@model EditDonemModalViewModel
+@{ Layout = null; }
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditPeriod")))
+<form name="DonemEditForm" role="form" class="form-horizontal">
+	<input type="hidden" name="Id" value="@Model.DonemDto.Id" />
+	<div class="modal-body">
+		<div class="form-group row">
+			<label class="col-md-3 col-form-label" for="surname">@L("PeriodType")</label>
+			<div class="col-md-9">
+				<select id="donemTuru"
+						name="DonemTuru"
+						asp-for="@Model.DonemDto.DonemTuru"
+						asp-items="@Model.LDonemTurleri"
+						class="form-control">
+					<option value="">Seçiniz</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row required">
+			<label class="col-md-3 col-form-label" for="name">@L("Name")</label>
+			<div class="col-md-9">
+				<input id="ad" type="text" class="form-control" name="Ad" value="@Model.DonemDto.Ad" required minlength="2">
+			</div>
+		</div>
+		<div class="form-group row required">
+			<label class="col-md-3 col-form-label" for="name">@L("OrderNo")</label>
+			<div class="col-md-9">
+				<input id="siraNo" type="number" class="form-control" name="SiraNo" value="@Model.DonemDto.SiraNo">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-md-3 col-form-label">@L("StartDate")</label>
+			<div class="col-md-9">
+				<input id="baslangicTarihi" class="form-control" name="BaslangicTarihi" asp-for="DonemDto.BaslangicTarihi" type="date" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-md-3 col-form-label">@L("EndDate")</label>
+			<div class="col-md-9">
+				<input id="bitisTarihi" class="form-control" name="BitisTarihi" asp-for="DonemDto.BitisTarihi" type="date" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-md-3 col-form-label" for="IsActive">@L("IsActive")</label>
+			<div class="col-md-9">
+				<input id="aktifMi" type="checkbox" name="AktifMi" value="true" @(Model.DonemDto.AktifMi ? "checked" : "") />
+			</div>
+		</div>
+	</div>
+	@await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/Donem/_EditModal.js" asp-append-version="true"></script>

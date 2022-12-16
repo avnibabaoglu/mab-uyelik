@@ -1,0 +1,355 @@
+﻿@using Abp.Authorization.Users
+@using Hudayim.Uyelik.Common
+@using Hudayim.Uyelik.Web.Models.Users
+@using Hudayim.Uyelik.Web.Startup
+
+@model UserViewModel
+@{
+	ViewBag.Title = L("EditUser");
+	ViewBag.CurrentPageName = PageNames.Users;
+}
+@section scripts
+{
+	<environment names="Development">
+		<script src="~/view-resources/Views/Users/EditAdmin.js" asp-append-version="true"></script>
+	</environment>
+
+	<environment names="Staging,Production">
+		<script src="~/view-resources/Views/Users/EditAdmin.min.js" asp-append-version="true"></script>
+	</environment>
+}
+
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<h1>@L("EditUser")</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-3">
+			<div class="card card-primary">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-12 mb-2">
+							@if (!string.IsNullOrWhiteSpace(Model.User.ProfilFotografTamYolu))
+							{
+								<div class="row">
+									<div class="col-12 mb-2">
+										<img src="@Model.User.ProfilFotografTamYolu" class="img-responsive img-bordered" style="width:50%;" />
+									</div>
+									<div class="col-12">
+										<button type="button" class="btn btn-sm bg-danger delete-user-photo" data-user-id="@Model.User.Id">
+											@L("Delete") <i class="fas fa-trash"></i>
+										</button>
+									</div>
+								</div>
+							}
+						</div>
+						<div class="col-12">
+							<div class="form-group row ">
+								<label class="col-md-3 col-form-label">@L("Image")</label>
+								<div class="col-md-9">
+									<input type="file" class="form-control" id="fileUpload">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-9">
+			<div class="card card-primary" id="UserEditCard">
+				<form name="UserEditForm" role="form" class="form-horizontal">
+					<div class="card-body">
+						<input type="hidden" name="Id" value="@Model.User.Id" />
+						<input type="hidden" id="profilFotografAdi" name="ProfilFotografAdi" asp-for="User.ProfilFotografAdi" />
+						<input type="hidden" id="profilFotografYolu" name="ProfilFotografYolu" asp-for="User.ProfilFotografYolu" />
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" role="tab" href="#edit-user-details">@L("UserDetails")</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" role="tab" href="#edit-user-roles">@L("UserRoles")</a>
+							</li>
+						</ul>
+						<div class="tab-content mt-4">
+							<div role="tabpanel" class="tab-pane container active" id="edit-user-details">
+								<div class="row">
+									<div class="col-6">
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("Country")</label>
+											<div class="col-md-9">
+												<select id="ulkeId"
+														name="UlkeId"
+														asp-for="User.UlkeId"
+														asp-items="Model.LUlkeler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("City")</label>
+											<div class="col-md-9">
+												<select id="ilId"
+														name="IlId"
+														asp-for="User.IlId"
+														asp-items="Model.LIller"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("County")</label>
+											<div class="col-md-9">
+												<select id="ilceId"
+														name="IlceId"
+														asp-for="User.IlceId"
+														asp-items="Model.LIlceler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("District")</label>
+											<div class="col-md-9">
+												<select id="mahalleId"
+														name="MahalleId"
+														asp-for="User.MahalleId"
+														asp-items="Model.LMahalleler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Address")</label>
+											<div class="col-md-9">
+												<textarea id="adres" type="text" class="form-control" name="Adres" rows="4" asp-for="User.Adres" maxlength="@MaxLengthValues.MaxAddressLength"></textarea>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Category")</label>
+											<div class="col-md-9">
+												<select id="kategoriId"
+														asp-for="User.KategoriIds"
+														asp-items="Model.LKategoriler"
+														class="form-control select2" multiple="multiple">
+													@if (Model.LKullaniciKategoriler != null && Model.LKullaniciKategoriler.Count() > 0)
+													{
+														foreach (var item in Model.LKullaniciKategoriler)
+														{
+															<option selected="selected" value="@item.Value">@item.Text</option>
+														}
+													}
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Unit")</label>
+											<div class="col-md-9">
+												<select id="birimId"
+														name="BirimId"
+														asp-for="User.BirimId"
+														asp-items="Model.LBirimler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Period")</label>
+											<div class="col-md-9">
+												<select id="donemId"
+														name="DonemId"
+														asp-for="User.DonemId"
+														asp-items="Model.LDonemler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("Univercity")</label>
+											<div class="col-md-9">
+												<select id="universiteId"
+														name="UniversiteId"
+														asp-for="User.UniversiteId"
+														asp-items="Model.LUniversiteler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("Faculity")</label>
+											<div class="col-md-9">
+												<select id="fakulteId"
+														name="FakulteId"
+														asp-for="User.FakulteId"
+														asp-items="Model.LFakulteler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("Department")</label>
+											<div class="col-md-9">
+												<select id="bolumId"
+														name="BolumId"
+														asp-for="User.BolumId"
+														asp-items="Model.LBolumler"
+														class="form-control select2">
+													<option value="">Seçiniz</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("GraduationYear")</label>
+											<div class="col-md-9">
+												<input id="mezuniyetYili" type="number" class="form-control" name="MezuniyetYili" value="@Model.User.MezuniyetYili">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Company")</label>
+											<div class="col-md-9">
+												<input id="calistigiKurum" type="text" class="form-control" name="CalistigiKurum" value="@Model.User.CalistigiKurum" maxlength="@AbpUserBase.MaxUserNameLength">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Task")</label>
+											<div class="col-md-9">
+												<select id="meslekId"
+														name="MeslekId"
+														asp-for="User.MeslekId"
+														asp-items="Model.LMeslekler"
+														class="form-control multi-select2">
+													@if (Model.User.MeslekId.HasValue)
+													{
+														<option selected="selected" value="@Model.User.MeslekId">@Model.User.MeslekAdi</option>
+													}
+													else
+													{
+														<option value="">Seçiniz</option>
+													}
+												</select>
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Position")</label>
+											<div class="col-md-9">
+												<input id="calistigiPozisyon" type="text" class="form-control" name="CalistigiPozisyon" value="@Model.User.CalistigiPozisyon" maxlength="@AbpUserBase.MaxUserNameLength">
+											</div>
+										</div>
+									</div>
+
+									<div class="col-6">
+										<div class="form-group row required">
+											<label class="col-md-3 col-form-label" for="username">@L("UserName")</label>
+											<div class="col-md-9">
+												<input id="username" type="text" class="form-control" name="UserName" value="@Model.User.UserName" required maxlength="@AbpUserBase.MaxUserNameLength" minlength="2">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Password")</label>
+											<div class="col-md-9">
+												<input type="password" class="form-control" name="Password" id="Password" maxlength="@AbpUserBase.MaxPlainPasswordLength">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("ConfirmPassword")</label>
+											<div class="col-md-9">
+												<input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" maxlength="@AbpUserBase.MaxPlainPasswordLength">
+											</div>
+										</div>
+										<div class="form-group row required">
+											<label class="col-md-3 col-form-label" for="name">@L("Name")</label>
+											<div class="col-md-9">
+												<input id="name" type="text" class="form-control" name="Name" value="@Model.User.Name" required maxlength="@AbpUserBase.MaxNameLength">
+											</div>
+										</div>
+										<div class="form-group row required">
+											<label class="col-md-3 col-form-label">@L("Surname")</label>
+											<div class="col-md-9">
+												<input id="surname" type="text" class="form-control" name="Surname" value="@Model.User.Surname" required maxlength="@AbpUserBase.MaxSurnameLength">
+											</div>
+										</div>
+										<div class="form-group row required">
+											<label class="col-md-3 col-form-label" for="email">@L("EmailAddress")</label>
+											<div class="col-md-9">
+												<input id="email" type="email" class="form-control" name="EmailAddress" value="@Model.User.EmailAddress" required maxlength="@AbpUserBase.MaxEmailAddressLength">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("PhoneNumber")</label>
+											<div class="col-md-9">
+												<input id="phoneNumber" type="tel" class="form-control" name="PhoneNumber" value="@Model.User.PhoneNumber">
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("PhoneNumber2")</label>
+											<div class="col-md-9">
+												<input id="ikinciTelefon" type="tel" class="form-control" name="IkinciTelefon" value="@Model.User.IkinciTelefon">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("StartDate")</label>
+											<div class="col-md-9">
+												<input id="uyelikBaslangicTarihi" class="form-control" name="UyelikBaslangicTarihi" asp-for="User.UyelikBaslangicTarihi" type="date" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("EndDate")</label>
+											<div class="col-md-9">
+												<input id="uyelikBitisTarihi" class="form-control" name="UyelikBitisTarihi" asp-for="User.UyelikBitisTarihi" type="date" />
+											</div>
+										</div>
+										<div class="form-group row ">
+											<label class="col-md-3 col-form-label">@L("Note")</label>
+											<div class="col-md-9">
+												<textarea id="not" type="text" class="form-control" name="Not" rows="4" asp-for="User.Not" maxlength="@MaxLengthValues.MaxAddressLength"></textarea>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("KvkkOnayliMi")</label>
+											<div class="col-md-9">
+												<input id="kvkkOnayliMi" type="checkbox" name="KvkkOnayliMi" value="true" @(Model.User.KvkkOnayliMi.HasValue ? "checked" : "") />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">@L("IsActive")</label>
+											<div class="col-md-9">
+												<input id="isActive" type="checkbox" name="IsActive" value="true" @(Model.User.IsActive ? "checked" : "") />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane container" id="edit-user-roles">
+								<div class="row">
+									@foreach (var role in Model.Roles)
+									{
+										<div class="col-md-6">
+											<input type="checkbox" name="role" value="@role.NormalizedName" title="@role.Description" class="filled-in" id="@($"role{role.Id}")" @(Model.UserIsInRole(role) ? "checked" : "") />
+											<label for="@($"role{role.Id}")" title="@role.DisplayName">@role.Name</label>
+										</div>
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+					@await Html.PartialAsync("~/Views/Shared/Forms/_FormFooterWithSaveAndCancel.cshtml")
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
